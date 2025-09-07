@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FisherFleet — Premium Seafood</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <style>
+    body{font-family:"Inter",sans-serif;background:#f9fbfd;margin:0;color:#0f172a;padding-top:140px;}
+    .top-banner{position:fixed;top:0;left:0;width:100%;background:linear-gradient(90deg,#e0f7fa,#b2ebf2);height:36px;display:flex;align-items:center;z-index:1100;}
+    .ticker{white-space:nowrap;display:inline-block;padding-left:100%;animation:marquee 20s linear infinite;}
+    .ticker span{padding:0 2rem;font-weight:600;}
+    @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+    .info-banner{position:fixed;top:36px;left:0;width:100%;background:#fff;color:#444;font-weight:700;font-size:0.98rem;padding:6px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.05);z-index:1090;}
+    .logo-center{text-align:center;margin-top:72px;}
+    .logo-center img{max-width:300px;width:90%;}
+    .logo-tag{color:#64748b;font-weight:700;}
+    header{position:sticky;top:72px;background:#fff;z-index:1000;box-shadow:0 1px 6px rgba(0,0,0,.04);}
+    nav{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;padding:.5rem;}
+    nav a{padding:.55rem .9rem;border-radius:8px;text-decoration:none;color:#0f172a;font-weight:700;}
+    nav a:hover{background:rgba(29,161,242,.07);}
+    .chip{background:#1da1f2;color:#fff;padding:.15rem .5rem;border-radius:999px;font-size:.75rem;font-weight:700;}
+    .hero{text-align:center;padding:1.5rem;}
+    .hero h1{font-size:2.2rem;font-weight:900;margin-bottom:.5rem;}
+    .hero p{font-style:italic;color:#64748b;max-width:800px;margin:0 auto;}
+    .products{max-width:1200px;margin:2rem auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;padding:0 1rem;}
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 22px rgba(0,0,0,.06);overflow:hidden;text-align:center;}
+    .card img{width:100%;height:200px;object-fit:contain;background:#f8fafc;}
+    .card h3{margin:.6rem 0;font-weight:900;}
+    .card p{color:#64748b;font-weight:600;font-size:.9rem;}
+    .card a{display:inline-block;margin:1rem 0;padding:.5rem 1rem;background:#1da1f2;color:#fff;text-decoration:none;font-weight:800;border-radius:8px;}
+    .coming-soon{filter:grayscale(.2) brightness(.9);}
+    .why{max-width:1200px;margin:2rem auto;padding:0 1rem;display:flex;flex-wrap:wrap;gap:1rem;}
+    .why .left{flex:1;min-width:260px;}
+    .why li{background:#fff;padding:1rem;margin-bottom:.5rem;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.05);font-weight:700;}
+    .why .right{flex:1;min-width:260px;}
+    .why .right img{width:100%;height:100%;object-fit:contain;background:#f8fafc;border-radius:12px;}
+    #contact{max-width:1200px;margin:2rem auto;padding:0 1rem;}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .contact-card{background:#fff;padding:1.5rem;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.05);}
+    .map{width:100%;border-radius:10px;object-fit:contain;cursor:pointer;}
+    .wa-btn{position:fixed;right:16px;bottom:16px;background:#1da1f2;width:60px;height:60px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;cursor:pointer;box-shadow:0 12px 30px rgba(29,161,242,.18);}
+    .wa-panel{display:none;position:fixed;right:16px;bottom:90px;width:300px;background:#fff;border-radius:12px;box-shadow:0 18px 48px rgba(0,0,0,.12);}
+    .wa-panel .wa-head{background:#1da1f2;color:#fff;padding:.7rem;font-weight:700;}
+    .wa-panel .wa-body{padding:.8rem;}
+    .wa-panel a{display:block;background:#f8fafc;padding:.7rem;border-radius:.5rem;margin-bottom:.5rem;text-decoration:none;font-weight:600;color:#000;}
+    @media(max-width:768px){
+      .products{grid-template-columns:1fr 1fr;}
+      .contact-grid{grid-template-columns:1fr;}
+      .hero h1{font-size:1.6rem;}
+      .hero p{font-size:.9rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="top-banner"><div class="ticker"><span>Premium Seafood</span><span>Handpicked</span><span>Quality Assured</span><span>Fresh from Source</span><span>Islandwide Delivery</span><span>Trusted by Chefs & Restaurants</span></div></div>
+  <div class="info-banner">Honoring 60 years of resilience, innovation, and harmony — Majulah Singapura!</div>
+
+  <div class="logo-center">
+    <img src="logo.jpg" alt="FisherFleet logo">
+    <div class="logo-tag">Every Catch Counts</div>
+  </div>
+
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="crabs.html">Crabs</a>
+      <a href="lobsters.html">Lobsters</a>
+      <a href="clams.html">Clams</a>
+      <a>Prawns <span class="chip">Soon</span></a>
+      <a>Chilled <span class="chip">Soon</span></a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Delight your diners with FisherFleet’s premium selection</h1>
+    <p>“Delight your diners with FisherFleet’s premium selection of live seafood — including Crabs, Lobsters, Clams, Prawns, and Chilled specialties. Each catch is professionally sourced, carefully graded for quality, and delivered with consistency you can trust.”</p>
+  </section>
+
+  <section class="products">
+    <div class="card"><img src="crab1.jpg"><h3>Crabs</h3><p>Chef-grade live crabs.</p><a href="crabs.html">View Products</a></div>
+    <div class="card"><img src="lobster1.jpg"><h3>Lobsters</h3><p>Premium lobsters.</p><a href="lobsters.html">View Products</a></div>
+    <div class="card"><img src="clams1.jpg"><h3>Clams</h3><p>Fresh clams.</p><a href="clams.html">View Products</a></div>
+    <div class="card coming-soon"><img src="prawn1.jpg"><h3>Prawns — Coming Soon</h3></div>
+    <div class="card coming-soon"><img src="chilled.jpg"><h3>Chilled — Coming Soon</h3></div>
+  </section>
+
+  <section class="why">
+    <div class="left">
+      <h2>Why Order from FisherFleet?</h2>
+      <ul>
+        <li>Premium Grading — Handpicked and graded.</li>
+        <li>Consistent Freshness — Daily checked quality.</li>
+        <li>Air-Flown Supply — From Sri Lanka, India, Indonesia.</li>
+        <li>Reliable Availability — Steady supply, timely delivery.</li>
+      </ul>
+    </div>
+    <div class="right"><img src="wcf1.jpg" alt="Why Choose FisherFleet"></div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Contact & Services</h3>
+        <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/6588780095">+65 8878 0095</a></p>
+        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:sales@fisherfleet.sg">sales@fisherfleet.sg</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> Singapore: Islandwide Delivery</p>
+      </div>
+      <div>
+        <a href="https://share.google/ZmAqfxqXRGDxMcBmvIf" target="_blank">
+          <img src="map.jpg" alt="Map" class="map">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <button class="wa-btn" id="waBtn"><i class="fab fa-whatsapp"></i></button>
+  <div class="wa-panel" id="waPanel">
+    <div class="wa-head">Quick Order</div>
+    <div class="wa-body">
+      <a href="https://wa.me/6588780095" target="_blank">Message on WhatsApp</a>
+      <a href="#contact">See Delivery Areas</a>
+    </div>
+  </div>
+
+  <script>
+    const waBtn=document.getElementById('waBtn');const waPanel=document.getElementById('waPanel');
+    waBtn.addEventListener('click',()=>{waPanel.style.display=waPanel.style.display==='block'?'none':'block';});
+    window.addEventListener('scroll',()=>{if(waPanel.style.display==='block')waPanel.style.display='none';});
+  </script>
+</body>
+</html>

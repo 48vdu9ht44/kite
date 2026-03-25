@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prawns — FisherFleet</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}img{max-width:100%;display:block}a{text-decoration:none}ul{list-style:none}
+:root{
+  --ocean:#2389ae;--ocean-d:#1a6b8a;--ocean-m:#2a9bc2;--ocean-l:#e0f3fa;--ocean-ll:#f0f9fd;
+  --white:#fff;--off:#f7fbfd;--ink:#0d1f2d;--muted:#4a6a7a;
+  --border:#c8dfe8;--borderl:#ddeef4;--gold:#c9943a;--goldl:#e8b84b;
+  --s1:0 2px 8px rgba(15,74,99,.08);--s2:0 6px 24px rgba(15,74,99,.13);--s3:0 20px 60px rgba(15,74,99,.22);
+}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
+.ribbon{background:var(--ocean-d);padding:8px 5%;text-align:center;font-size:.7rem;letter-spacing:.08em;color:rgba(255,255,255,.88);font-weight:500}
+nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--borderl);height:64px;display:flex;align-items:center;padding:0 5%}
+.nav-in{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.brand img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 0 0 3px rgba(201,148,58,.14)}
+.brand-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--ink);white-space:nowrap}
+.brand-name em{font-style:italic;color:var(--ocean);font-weight:400}
+.nav-links{display:flex;align-items:center;gap:.1rem}
+.nav-links a{color:var(--muted);font-size:.74rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding:6px 10px;border-radius:4px;transition:all .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--ocean);background:var(--ocean-ll)}
+.nav-links .norder{background:var(--ocean);color:white;border-radius:4px;font-weight:600;padding:7px 14px;margin-left:.4rem}
+.nav-links .norder:hover{background:var(--ocean-d);color:white}
+.hbtn{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;flex-shrink:0}
+.hbtn span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.mmenu{display:none;position:fixed;inset:64px 0 0 0;background:white;z-index:299;padding:1.5rem 5%;flex-direction:column;overflow-y:auto}
+.mmenu.on{display:flex}
+.mmenu a{font-size:1rem;font-weight:500;color:var(--ink);padding:.9rem 0;border-bottom:1px solid var(--borderl);display:flex;align-items:center;justify-content:space-between}
+.mmenu a:last-child{border:none;margin-top:1rem;background:var(--ocean);color:white;justify-content:center;border-radius:6px;padding:1rem;font-weight:600}
+footer{background:var(--ink);padding:2.2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.2rem}
+.fbrand{font-family:'Playfair Display',serif;font-size:1.15rem;color:white}
+.fbrand em{font-style:italic;color:var(--goldl);font-weight:400}
+.flinks{display:flex;gap:1.1rem;flex-wrap:wrap;align-items:center}
+.flinks a{color:rgba(255,255,255,.35);font-size:.72rem;letter-spacing:.05em;transition:color .2s}
+.flinks a:hover{color:var(--goldl)}
+.ford{background:var(--ocean)!important;color:white!important;padding:6px 14px;border-radius:4px;font-weight:600!important}
+.ford:hover{background:var(--ocean-m)!important;color:white!important}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media(max-width:768px){
+  nav{padding:0 4%}.nav-links{display:none}.hbtn{display:flex}
+  footer{flex-direction:column;align-items:flex-start;padding:2rem 4%}
+  .flinks{gap:.85rem}.ribbon{font-size:.64rem;padding:7px 4%}
+  .brand-name{font-size:1.1rem}.brand img{width:30px;height:30px}
+}
+.page-hero{min-height:52vh;display:flex;align-items:center;padding:95px 5% 75px;position:relative;overflow:hidden;background:linear-gradient(160deg,#1a6b8a 0%,#2389ae 40%,#2a9bc2 75%,#35afd6 100%)}
+.phimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.11}
+.phcont{position:relative;z-index:1;max-width:600px;animation:fadeUp .7s ease both}
+.bc{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-bottom:1.4rem}
+.bc a{color:rgba(255,255,255,.75)}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:700;color:white;margin-bottom:1rem;line-height:1.1;letter-spacing:-.02em}
+.page-hero h1 em{font-style:italic;font-weight:400;color:rgba(255,255,255,.85)}
+.page-hero p{font-size:.97rem;color:rgba(255,255,255,.68);line-height:1.8;max-width:470px;margin-bottom:1.8rem}
+.hbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);color:white;font-size:.73rem;font-weight:600;padding:7px 15px;border-radius:4px;letter-spacing:.08em;text-transform:uppercase}
+.eye{font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ocean);font-weight:600;margin-bottom:.7rem}
+.ttl{font-family:'Playfair Display',serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:.7rem;letter-spacing:-.02em}
+.ttl em{font-style:italic;color:var(--ocean);font-weight:400}
+.dsc{font-size:.86rem;color:var(--muted);line-height:1.75;margin-bottom:2.8rem}
+.psec{padding:80px 5%;background:var(--white)}
+.pgrid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.pc4{background:var(--off);border:1.5px solid var(--border);border-radius:8px;overflow:hidden;transition:transform .25s,box-shadow .25s;box-shadow:var(--s1)}
+.pc4:hover{transform:translateY(-4px);box-shadow:var(--s2)}
+.pslot{width:100%;aspect-ratio:1/1;background:linear-gradient(135deg,var(--ocean-ll),var(--ocean-l));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;position:relative;overflow:hidden}
+.pslot::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(35,137,174,.04) 10px,rgba(35,137,174,.04) 11px)}
+.pslot-ico{font-size:1.9rem;opacity:.28;position:relative;z-index:1}
+.pslot-lbl{font-size:.58rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);opacity:.65;position:relative;z-index:1;text-align:center;padding:0 .8rem}
+.pc4-body{padding:1rem}
+.pc4-name{font-family:'Playfair Display',serif;font-size:.97rem;color:var(--ink);margin-bottom:.3rem}
+.gbadge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid;margin-bottom:.35rem}
+.ga{border-color:var(--gold);color:var(--gold);background:rgba(201,148,58,.05)}
+.gb{border-color:var(--border);color:var(--muted)}
+.pc4-wt{font-size:.73rem;color:var(--muted)}
+.esec{padding:80px 5%;background:var(--ocean-d)}
+.ebox{max-width:600px;margin:0 auto;text-align:center}
+.ebox h2{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:white;margin-bottom:.75rem}
+.ebox h2 em{font-style:italic;color:var(--goldl);font-weight:400}
+.ebox p{color:rgba(255,255,255,.58);font-size:.88rem;line-height:1.75;margin-bottom:1.8rem}
+.ebtns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+.eow{background:white;color:var(--ocean-d);padding:13px 30px;border-radius:4px;font-weight:700;font-size:.86rem;display:inline-flex;align-items:center;gap:8px;transition:all .25s;letter-spacing:.05em;text-transform:uppercase}
+.eow:hover{background:var(--ocean-l);transform:translateY(-2px)}
+.eem{border:1.5px solid rgba(255,255,255,.28);color:white;padding:12px 22px;border-radius:4px;font-size:.86rem;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.eem:hover{border-color:white;background:rgba(255,255,255,.07)}
+.ucwrap{min-height:68vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 5%;background:linear-gradient(160deg,#1a6b8a 0%,#2389ae 40%,#2a9bc2 75%,#35afd6 100%);position:relative;overflow:hidden}
+.ucbg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.09}
+.ucbox{position:relative;z-index:1;max-width:540px}
+.ucemo{font-size:3.8rem;margin-bottom:1.4rem;display:block}
+.ucbox h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:700;color:white;margin-bottom:.9rem;letter-spacing:-.02em}
+.ucbox h1 em{font-style:italic;font-weight:400;color:rgba(255,255,255,.85)}
+.ucbox p{font-size:.97rem;color:rgba(255,255,255,.68);line-height:1.8;margin-bottom:2.2rem;max-width:420px;margin-left:auto;margin-right:auto}
+.ucbtn{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--ocean-d);padding:14px 34px;border-radius:4px;font-weight:700;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;box-shadow:var(--s2);transition:all .3s}
+.ucbtn:hover{background:var(--ocean-l);transform:translateY(-2px)}
+.backl{display:inline-block;margin-top:1.4rem;color:rgba(255,255,255,.5);font-size:.8rem}
+.backl:hover{color:white}
+@media(max-width:900px){.pgrid4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.page-hero{padding:76px 4% 60px;min-height:auto}.psec,.esec{padding:60px 4%}}
+@media(max-width:520px){.pgrid4{grid-template-columns:repeat(2,1fr);gap:.75rem}.ebtns{flex-direction:column;align-items:stretch}.eow,.eem{justify-content:center}}
+</style>
+</head>
+<body>
+<div class="ribbon">🇸🇬 &nbsp;Proudly celebrating Singapore's <strong>60th Anniversary</strong> — Majulah Singapura!</div>
+<nav><div class="nav-in">
+  <a class="brand" href="index.html">
+    <img src="https://48vdu9ht44.github.io/kite/logo.jpg" alt="FisherFleet" onerror="this.style.display='none'">
+    <span class="brand-name">Fisher<em>Fleet</em></span>
+  </a>
+  <ul class="nav-links">
+      <li><a href="crabs.html">Crabs</a></li>
+      <li><a href="lobsters.html">Lobsters</a></li>
+      <li><a href="clams.html">Clams</a></li>
+      <li><a href="prawns.html" class="active">Prawns</a></li>
+      <li><a href="chilled.html">Chilled</a></li>
+      <li><a href="https://wa.me/6583048766" class="norder">Order Us</a></li>
+  </ul>
+  <button class="hbtn" id="hbtn"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mmenu" id="mmenu">
+  <a href="crabs.html">Crabs <span>→</span></a>
+  <a href="lobsters.html">Lobsters <span>→</span></a>
+  <a href="clams.html">Clams <span>→</span></a>
+  <a href="prawns.html">Prawns <span>→</span></a>
+  <a href="chilled.html">Chilled <span>→</span></a>
+  <a href="https://wa.me/6583048766">Order Us</a>
+</div>
+<div class="ucwrap"><div class="ucbg" style="background-image:url('https://48vdu9ht44.github.io/kite/prawn1.jpg')"></div>
+<div class="ucbox"><span class="ucemo" style="animation:bounce 1.2s ease-in-out infinite 1.8s ease-in-out infinite">🦐</span>
+<h1><em>Prawns</em> — Coming Soon</h1><p>Our prawns are a little shy right now — coming very soon! Ping us directly and we'll sort you out 🙏</p>
+<a href="https://wa.me/6583048766?text=Hi%20FisherFleet%2C%20I%27d%20like%20to%20enquire%20about%20prawns." class="ucbtn">Order Us</a>
+<br><a href="index.html" class="backl">← Back to Homepage</a></div></div>
+<footer>
+  <a class="fbrand" href="index.html">Fisher<em>Fleet</em></a>
+  <div class="flinks">
+    <a href="crabs.html">Crabs</a>
+    <a href="lobsters.html">Lobsters</a>
+    <a href="clams.html">Clams</a>
+    <a href="prawns.html">Prawns</a>
+    <a href="chilled.html">Chilled</a>
+    <a href="mailto:sales@fisherfleet.sg">Email</a>
+    <a href="https://wa.me/6583048766" class="ford">Order Us</a>
+  </div>
+</footer>
+<script>
+const b=document.getElementById('hbtn'),m=document.getElementById('mmenu');
+if(b&&m){
+  b.addEventListener('click',()=>{
+    const on=m.classList.toggle('on');
+    document.body.style.overflow=on?'hidden':'';
+    b.querySelectorAll('span')[0].style.transform=on?'rotate(45deg) translate(5px,5px)':'';
+    b.querySelectorAll('span')[1].style.opacity=on?'0':'1';
+    b.querySelectorAll('span')[2].style.transform=on?'rotate(-45deg) translate(5px,-5px)':'';
+  });
+  m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    m.classList.remove('on');document.body.style.overflow='';
+    b.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='1'});
+  }));
+}
+</script>
+</body></html>
